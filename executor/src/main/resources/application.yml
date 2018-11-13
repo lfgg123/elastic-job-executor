@@ -24,9 +24,9 @@ log:
     
     
 jdbc.driverClassName : com.mysql.jdbc.Driver
-jdbc.url : jdbc:mysql://172.17.16.53:3306/elastic_job_demo?characterEncoding:UTF-8&amp;zeroDateTimeBehavior:convertToNull
-jdbc.username : dev_ws
-jdbc.password : dev_ws
+jdbc.url : jdbc:mysql://127.0.0.1:3306/elastic_job_demo?characterEncoding:UTF-8&amp;zeroDateTimeBehavior:convertToNull
+jdbc.username : root
+jdbc.password : 123456
 namespace : elastic-job-demo
 maxSleepTimeMilliseconds : 3000
 baseSleepTimeMilliseconds : 1000
@@ -34,5 +34,5 @@ maxRetries : 2
 connectionTimeoutMilliseconds : 5000
 sessionTimeoutMilliseconds : 5000
 simplejob.path : template/simplejob.txt
-serverLists : 172.17.16.53:2181
+serverLists : 127.0.0.1:2181
 package.prefix : com.github.lfgg123.jobs.
