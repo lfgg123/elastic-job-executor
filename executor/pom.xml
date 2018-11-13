@@ -11,5 +11,49 @@
 
     <artifactId>executor</artifactId>
 
+    <build>
+        <finalName>elastic-job-demo</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
 
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.github.lfgg123.Starter</mainClass>
+                    <requiresUnpack>
+                        <dependency>
+                            <groupId>org.apache.axis2</groupId>
+                            <artifactId>axis2</artifactId>
+                        </dependency>
+                    </requiresUnpack>
+                    <finalName>elastic-job-demo</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- spring boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.lfgg123</groupId>
+            <artifactId>job</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

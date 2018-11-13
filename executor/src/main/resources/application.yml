@@ -1,0 +1,38 @@
+server:
+  port: 10055
+  context-path: /job
+
+spring:
+  profiles:
+    active: dev
+
+log:
+  application:
+    name: elastic-job-demo
+#生产环境日志级别
+  pro:
+    level: INFO
+#开发环境日志级别
+  dev:
+    level: INFO
+#日志文件名
+  file:
+    name: elastic-job-demo
+#日志文件最大归档数
+    max-index: 72
+    max-file-size: 100MB
+    
+    
+jdbc.driverClassName : com.mysql.jdbc.Driver
+jdbc.url : jdbc:mysql://172.17.16.53:3306/elastic_job_demo?characterEncoding:UTF-8&amp;zeroDateTimeBehavior:convertToNull
+jdbc.username : dev_ws
+jdbc.password : dev_ws
+namespace : elastic-job-demo
+maxSleepTimeMilliseconds : 3000
+baseSleepTimeMilliseconds : 1000
+maxRetries : 2
+connectionTimeoutMilliseconds : 5000
+sessionTimeoutMilliseconds : 5000
+simplejob.path : template/simplejob.txt
+serverLists : 172.17.16.53:2181
+package.prefix : com.github.lfgg123.jobs.

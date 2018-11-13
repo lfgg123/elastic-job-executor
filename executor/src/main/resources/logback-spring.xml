@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<springProperty scope="context" name="log.application.name" source="log.application.name"/>
+	<springProperty scope="context" name="log.pro.level" source="log.pro.level"/>
+	<springProperty scope="context" name="log.dev.level" source="log.dev.level"/>
+	<springProperty scope="context" name="log.file.name" source="log.file.name"/>
+	<springProperty scope="context" name="log.file.maxIndex" source="log.file.maxIndex"/>
+	<springProperty scope="context" name="log.file.maxFileSize" source="log.file.maxFileSize"/>
+	<property name="LOG_PATTERN" value="[${log.application.name}] [${PID}] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%p] [%t] [%c] : %m%n"/>
+
+	<!-- 控制台输出日志 -->
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	<!-- 按小时生成日志文件，最多保留 ${log.file.maxIndex}小时日志文件，每小时文件再按${log.file.maxFileSize}大切分-->
+	<appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./logs/${log.file.name}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>./logs/%d{yyyy-MM}/${log.file.name}.%d{yyyy-MM-dd-HH}.%i.log.gz</fileNamePattern>
+			<maxHistory>${log.file.maxIndex}</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>${log.file.maxFileSize}</MaxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	<!-- 按小时生成日志文件，最多保留 ${log.file.maxIndex}小时日志文件，每小时文件再按${log.file.maxFileSize}大切分-->
+	<appender name="infoFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./logs/info-${log.file.name}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>./logs/%d{yyyy-MM}/dk-${log.file.name}.%d{yyyy-MM-dd-HH}.%i.log.gz</fileNamePattern>
+			<maxHistory>${log.file.maxIndex}</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>${log.file.maxFileSize}</MaxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<springProfile name="pro,pre,test,t1,t2,t3">
+		<root level="${log.pro.level}">
+			<appender-ref ref="fileAppender" />
+		</root>
+		<logger name="com.github" level="${log.pro.level}" additivity="false">
+			<appender-ref ref="infoFileAppender"/>
+		</logger>
+	</springProfile>
+	<springProfile name="dev">
+		<root level="${log.dev.level}">
+			<appender-ref ref="consoleAppender" />
+			<appender-ref ref="fileAppender" />
+		</root>
+		<logger name="com.github" level="${log.dev.level}" additivity="false">
+			<appender-ref ref="consoleAppender" />
+			<appender-ref ref="infoFileAppender"/>
+		</logger>
+	</springProfile>
+</configuration>

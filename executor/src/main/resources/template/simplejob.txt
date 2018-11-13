@@ -1,0 +1,31 @@
+package com.github.lfgg123.jobs;
+import com.github.lfgg123.exception.JobOperationException;
+import com.github.lfgg123.util.SpringContextUtil;
+import com.dangdang.ddframe.job.api.ShardingContext;
+import com.dangdang.ddframe.job.api.simple.SimpleJob;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+public class ${jobName} implements SimpleJob {
+    private final Logger logger = LoggerFactory.getLogger(${jobName}.class);
+    @Override
+    public void execute(ShardingContext shardingContext) {
+        logger.info("准备执行定时任务,thread ID:{},任务总片数{},当前分片项:{}", Thread.currentThread().getId(), shardingContext.getShardingTotalCount(), shardingContext.getShardingItem());
+        try {
+            ${dubboClass} jobApi = (${dubboClass}) SpringContextUtil.getBean(Class.forName("${dubboClass}"));
+            String jobParameter = "${jobParameter}";
+            switch (shardingContext.getShardingItem()){
+                case 0:
+                    jobApi.${methodName}(jobParameter);
+                    logger.info("${dubboClass}.${methodName}执行完毕");
+                    break;
+                case 1:
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception e) {
+            logger.error("接口:${dubboClass}异常", e);
+            throw new JobOperationException("${dubboClass}执行失败,%s",e.getMessage());
+        }
+    }
+}

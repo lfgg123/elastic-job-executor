@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.lfgg123.dao.JobConfigDao">
+
+    <sql id="Base_Column_List">
+        id, job_name, dubbo_class, method_name, sharding_total_count, cron, sharding_item_parameters, job_parameter, monitor_port, monitor_execution, failover,description,create_at,update_at
+    </sql>
+
+    <select id="getAllJobs" resultType="com.github.lfgg123.model.SchedulerJob">
+        SELECT <include refid="Base_Column_List"/>
+        FROM `scheduler_job`
+    </select>
+
+</mapper>
