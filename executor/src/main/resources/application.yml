@@ -1,5 +1,5 @@
 server:
-  port: 10055
+  port: 8080
   context-path: /job
 
 spring:
