@@ -8,3 +8,4 @@ elastic-job二次开发
 3.通过参数统一控制所有的job是否在应用启动的时候同时失效。
 
 逻辑架构：
+![Image text](https://raw.githubusercontent.com/lfgg123/elastic-job-demo/master/documents/%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84.png)
