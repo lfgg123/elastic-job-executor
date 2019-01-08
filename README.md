@@ -1,4 +1,4 @@
- elastic-job-demo
+ elastic-job-executor
 =================== 
 **elastic-job二次开发**
 -------------------
