@@ -1,6 +1,6 @@
  elastic-job-executor
 =================== 
-**elastic-job二次开发**
+**elastic-job整合springboot**
 -------------------
 ### 改动点：
 
@@ -14,7 +14,7 @@
 4.对elastic-job的源码中的JobScheduler进行修改，新增了一个构造函数。详情见documents/JobScheduler.java。
 
 **注：** 
-pom文件中的elastic-job的版本号是修改过JobScheduler重新deploy的版本号，与中央仓库中的版本号无关。基于springboot
+pom文件中的elastic-job的版本号是修改过JobScheduler重新deploy的版本号，与中央仓库中的版本号无关。
 
 
 ### 逻辑架构：
