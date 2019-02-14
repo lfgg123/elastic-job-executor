@@ -14,7 +14,9 @@
 4.对elastic-job的源码中的JobScheduler进行修改，新增了一个构造函数。详情见documents/JobScheduler.java。
 
 **注：** 
-pom文件中的elastic-job的版本号是修改过JobScheduler重新deploy的版本号，与中央仓库中的版本号无关。
+pom文件中的elastic-job的版本号是修改过JobScheduler重新deploy的版本号，与中央仓库中的版本号无关。本项目正常启动需要替换源码的JobScheduler类
+
+**elastic-job源码地址:https://github.com/elasticjob/elastic-job-lite** 
 
 
 ### 逻辑架构：
