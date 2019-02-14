@@ -1,6 +1,6 @@
  elastic-job-executor
 =================== 
-**elastic-job整合springboot**
+**elastic-job整合springboot+mybatis**
 -------------------
 ### 改动点：
 
