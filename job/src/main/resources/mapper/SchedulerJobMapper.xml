@@ -3,7 +3,7 @@
 <mapper namespace="com.github.lfgg123.dao.JobConfigDao">
 
     <sql id="Base_Column_List">
-        id, job_name, dubbo_class, method_name, sharding_total_count, cron, sharding_item_parameters, job_parameter, monitor_port, monitor_execution, failover,description,create_at,update_at
+        id, job_name, method_class, method_name, sharding_total_count, cron, sharding_item_parameters, job_parameter, monitor_port, monitor_execution, failover,description,create_at,update_at
     </sql>
 
     <select id="getAllJobs" resultType="com.github.lfgg123.model.SchedulerJob">

@@ -11,12 +11,12 @@ public class ${jobName} implements SimpleJob {
     public void execute(ShardingContext shardingContext) {
         logger.info("准备执行定时任务,thread ID:{},任务总片数{},当前分片项:{}", Thread.currentThread().getId(), shardingContext.getShardingTotalCount(), shardingContext.getShardingItem());
         try {
-            ${dubboClass} jobApi = (${dubboClass}) SpringContextUtil.getBean(Class.forName("${dubboClass}"));
+            ${methodClass} jobApi = (${methodClass}) SpringContextUtil.getBean(Class.forName("${methodClass}"));
             String jobParameter = "${jobParameter}";
             switch (shardingContext.getShardingItem()){
                 case 0:
                     jobApi.${methodName}(jobParameter);
-                    logger.info("${dubboClass}.${methodName}执行完毕");
+                    logger.info("${methodClass}.${methodName}执行完毕");
                     break;
                 case 1:
                     break;
@@ -24,8 +24,8 @@ public class ${jobName} implements SimpleJob {
                     break;
             }
         } catch (Exception e) {
-            logger.error("接口:${dubboClass}异常", e);
-            throw new JobOperationException("${dubboClass}执行失败,%s",e.getMessage());
+            logger.error("接口:${methodClass}异常", e);
+            throw new JobOperationException("${methodClass}执行失败,%s",e.getMessage());
         }
     }
 }

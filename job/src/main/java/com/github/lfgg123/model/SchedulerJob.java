@@ -28,7 +28,7 @@ public class SchedulerJob {
     /**
      * dubbo接口class全路径
      */
-    private String dubboClass;
+    private String methodClass;
     /**
      * 方法名
      */
@@ -75,6 +75,14 @@ public class SchedulerJob {
      */
     private Date updateAt;
 
+    public String getMethodClass() {
+        return methodClass;
+    }
+
+    public void setMethodClass(String methodClass) {
+        this.methodClass = methodClass;
+    }
+
     public Integer getMonitorPort() {
         return monitorPort;
     }
@@ -97,14 +105,6 @@ public class SchedulerJob {
 
     public void setJobName(String jobName) {
         this.jobName = jobName;
-    }
-
-    public String getDubboClass() {
-        return dubboClass;
-    }
-
-    public void setDubboClass(String dubboClass) {
-        this.dubboClass = dubboClass;
     }
 
     public String getMethodName() {
